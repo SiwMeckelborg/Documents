@@ -40,13 +40,9 @@
             {% for folderitem in folder.folderitems %}
 
             {% if folderitem.title %}
-            {% if page.url == folderitem.jurl %}
+
             <li class="level1items open"><a href="{{ site.baseurl }}{{folderitem.jurl | remove: "/" }}">{{folderitem.title}}</a></li>
-            {% elsif folderitem.jurl contains "http://" or folderitem.jurl contains "https://" %}
-            <li class="level1items"><a  class="noExtIcon" href="{{ site.baseurl }}{{folderitem.jurl }}">{{folderitem.title}}</a></li>
-            {% else %}
-            <li class="level1items"><a href="{{ site.baseurl }}{{folderitem.jurl | remove: "/" }}">{{folderitem.title}}</a></li>
-            {% endif %}
+
             {% endif %}
 
             {% for subfolder in folderitem.subfolders %}
@@ -56,13 +52,8 @@
                     {% for subfolderitem in subfolder.subfolderitems %}
 
                     {% if subfolderitem.title %}
-                    {% if page.url == subfolderitem.jurl %}
+
                     <li class="level2items open"><a href="{{ site.baseurl }}{{subfolderitem.jurl | remove: "/" }}">{{subfolderitem.title}}</a></li>
-                    {% elsif folderitem.jurl contains "http://" or folderitem.jurl contains "https://" %}
-                    <li class="level2items"><a  class="noExtIcon" href="{{ site.baseurl }}{{subfolderitem.jurl }}">{{subfolderitem.title}}</a></li>
-                    {% else %}
-                    <li class="level2items"><a href="{{ site.baseurl }}{{subfolderitem.jurl | remove: "/" }}">{{subfolderitem.title}}</a></li>
-                    {% endif %}
                     {% endif %}
 
                     {% for subsubfolder in subfolderitem.subsubfolders %}
@@ -71,13 +62,9 @@
                             {% for subsubfolderitem in subsubfolder.subsubfolderitems %}
 
                             {% if subsubfolderitem.title %}
-                            {% if page.url == subsubfolderitem.jurl %}
+
                             <li class="level3items open"><a href="{{ site.baseurl }}{{subsubfolderitem.jurl | remove: "/" }}">{{subsubfolderitem.title}}</a></li>
-                            {% elsif folderitem.jurl contains "http://" or folderitem.jurl contains "https://" %}
-                            <li class="level3items"><a href="{{ site.baseurl }}{{subsubfolderitem.jurl }}">{{subsubfolderitem.title}}</a></li>
-                            {% else %}
-                            <li class="level3items"><a href="{{ site.baseurl }}{{subsubfolderitem.jurl | remove: "/" }}">{{subsubfolderitem.title}}</a></li>
-                            {% endif %}
+                          
                             {% endif %}
 
                             {% endfor %}
