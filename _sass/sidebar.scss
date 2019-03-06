@@ -11,15 +11,16 @@
 }
 .docnav li {
   list-style: none;
-  font: normal 12px "Open Sans", "Lucida Grande", "Helvetica Neue", Arial;
+  font: "Open Sans", "Lucida Grande", "Helvetica Neue", Arial;
   border-bottom: 0px;
+  color: red;
 }
 .docnav li a:hover,
 .docnav li a:active {
   text-decoration: none;
   color: #666;
 }
-/* plus */
+/* plus
 
 .docnav li.level1 > a > span:after,
 .docnav li.level2 > a > span:after,
@@ -31,7 +32,7 @@
   padding-right: 12px;
   text-decoration: none;
 }
-/* empty square*/
+
 
 .docnav li.level1items > a:before,
 .docnav li.level2items > a:before,
@@ -41,9 +42,9 @@
   color: #e47911;
   padding-right: 10px;
   text-decoration: none;
-  /*text-indent: -1.5em;*/
+  /*text-indent: -1.5em;
 }
-/* minus */
+
 
 .docnav li.open > a > span:after {
   content: '\f146';
@@ -51,7 +52,8 @@
   color: #e47911;
   font-size: 14px;
   padding-right: 10px;
-}
+}*/
+
 .docnav li.level3,
 .docnav li.level3items {
   padding-left: 10px
@@ -59,13 +61,18 @@
 .docnav li.level2,
 .docnav li.level2items {
   padding-left: 10px;
+  font-size: 12px;
 }
 .docnav li.level1,
 .docnav li.level1items {
   padding-left: 10px;
+  font-size: 16px;
+
+
 }
 .docnav li {
   margin: 7px 0px;
+    color: #e47911;
 }
 li.level1.open > ul > li.level1items.open a,
 li.level2.open > ul > li.level2items.open a,

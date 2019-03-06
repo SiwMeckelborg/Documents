@@ -3,3 +3,20 @@ layout: null
 ---
 
 /* left blank so you can overwrite this in your own project without copying the layout too */
+#sidebar {
+position: fixed;
+top: 50px;
+max-width: 300px;
+bottom: 0;
+left: 0;
+
+font-weight: normal;
+font-size: 90%;
+line-height: 27px;
+-webkit-font-smoothing: antialiased;
+
+
+.main {
+  margin-left: 300px; /* Same as the width of the sidebar */
+  padding: 0px 10px;
+}

@@ -1,5 +1,6 @@
 
 ############# SITE PROPERTIES #############
+baseurl: https://siwmeckelborg.github.io/Documents/
 
 # localhost port (can be anything)
 port: 4000
@@ -123,6 +124,7 @@ defaults:
       layout: default
       topnav: topnav
       footer: footer
+
   -
     scope:
       path: ""
@@ -132,6 +134,17 @@ defaults:
       topnav: topnav
       footer: footer
       type: search
+      sidebar: jekyllhowto
+
+ # _portfolio
+  -
+    scope:
+      path: ""
+      type: portfolio
+    values:
+      layout: default
+      topnav: topnav
+      footer: footer
       sidebar: jekyllhowto
 
   -
@@ -183,7 +196,11 @@ kramdown:
 # used to define sass settings. leave as is.
 
  sass:
+     sass_dir: _sass
      style: compressed
+
+# Outputting
+permalink: /:categories/:title/
 
 ############# COLLECTIONS #############
 # used to define collections used in project. leave as is.
@@ -191,6 +208,10 @@ kramdown:
 collections:
   docs:
     output: true
+
+  portfolio:
+    output: true
+    permalink: /:collection/:path/
 
 ########## UI text ###############
 # The UI text is separated into strings defined here to facilitate translation. Grouping them here also consolidates all UI text.
