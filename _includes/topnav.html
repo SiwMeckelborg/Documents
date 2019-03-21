@@ -119,11 +119,11 @@
                     {% for entry in topnav.navbar_singleitems %}
                     {% for item in entry.items %}
                     {% if item.url contains "http://" or item.url contains "https://" %}
-                    <li><a href="{{ site.baseurl }}{{item.url}}" class="noExtIcon">{{item.title}}</a></li>
+                    <li><a href="{{item.url}}" class="noExtIcon">{{item.title}}</a></li>
                     {% elsif page.url contains item.url %}
-                    <li class="active"><a href="{{ site.baseurl }}{{item.url | remove: "/"}}">{{item.title}}</a></li>
+                    <li class="active"><a href="{{item.url | remove: "/"}}">{{item.title}}</a></li>
                     {% else %}
-                    <li><a href="{{ site.baseurl }}{{item.url | remove: "/"}}">{{item.title}}</a></li>
+                    <li><a href="{{item.url | remove: "/"}}">{{item.title}}</a></li>
                     {% endif %}
                     {% endfor %}
                     {% endfor %}
@@ -137,11 +137,11 @@
                         <ul class="dropdown-menu">
                             {% for folderitem in folder.folderitems %}
                             {% if folderitem.url contains "http://" or folderitem.url contains "https://" %}
-                            <li><a href="{{ site.baseurl }}{{folderitem.url}}" class="noExtIcon">{{folderitem.title}}</a></li>
+                            <li><a href="{{folderitem.url}}" class="noExtIcon">{{folderitem.title}}</a></li>
                             {% elsif page.url contains folderitem.url %}
-                            <li class="dropdownActive"><a href="{{ site.baseurl }}{{folderitem.url |  remove: "/"}}">{{folderitem.title}}</a></li>
+                            <li class="dropdownActive"><a href="{{folderitem.url |  remove: "/"}}">{{folderitem.title}}</a></li>
                             {% else %}
-                            <li><a href="{{ site.baseurl }}{{folderitem.url | remove: "/"}}">{{folderitem.title}}</a></li>
+                            <li><a href="{{folderitem.url | remove: "/"}}">{{folderitem.title}}</a></li>
                             {% endif %}
                             {% endfor %}
                         </ul>

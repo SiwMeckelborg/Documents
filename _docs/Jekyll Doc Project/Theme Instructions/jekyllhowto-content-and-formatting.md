@@ -7,10 +7,9 @@ product: Jekyll How-to Guide
 
 This page covers all the details you need to know about content and formatting, including topics such as page directories, links, alerts, images, and more.  
 
-* TOC
-{:toc}
 
 ## Where to Store Your Pages
+
 
 "Maskinporten" er en egenskap ved ID-portens OIDC provider som tilbyr en enkel modell for API-sikring basert på såkalt "2-legged Oauth", inspirert av [Google sine system-kontoer](https://developers.google.com/identity/protocols/OAuth2ServiceAccount).
 
@@ -35,7 +34,8 @@ graph LR
 
 API-tilbydere og konsumenter kan bruke denne funksjonaliteten for å styre tilgang i de tilfellene der informasjonsverdiene APIet tilbyr er regulert av lovhjemmel, og ikke krever samtykke av brukeren.
 
-Bruk av Maskinporten krever at begge aktørene bruker ID-porten sin selvbetjeningsfunksjonalitet.
+"Maskinporten" er en egenskap ved ID-portens OIDC provider som tilbyr en enkel modell for API-sikring basert på såkalt "2-legged Oauth", inspirert av [Google sine system-kontoer](https://developers.google.com/identity/protocols/OAuth2ServiceAccount).
+
 
 Store your files the **_docs** folder, inside a project folder that reflects your product's name. Inside your project folder, you can organize your pages in any of subdirectories you want. As long as each page has a permalink property in the front matter, the pages will be moved into the root directory and flattened (that is, pulled out of any subdirectories) when your site builds.
 
