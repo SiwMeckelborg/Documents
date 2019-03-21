@@ -1,6 +1,6 @@
 
 ############# SITE PROPERTIES #############
-baseurl: https://siwmeckelborg.github.io/Documents/
+#  baseurl: https://siwmeckelborg.github.io/Documents/
 
 # localhost port (can be anything)
 port: 4000

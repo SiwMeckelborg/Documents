@@ -15,8 +15,8 @@ folders:
     pdf: true
 
   - title: Copyright
-    jurl: /pdf_copyright_page.html
-    pdf: true
+    jurl: /oidc_guide_maskinporten.html
+
 
   - title: TOC page
     jurl: /pdf_toc_page.html
@@ -46,9 +46,9 @@ folders:
     pdf: true
 
   - title: Generate a PDF
-    jurl: /jekyllhowto-pdf.html
+    jurl: /oidc_guide_maskinporten.html
     ref: jekyllhowto-pdf
-    pdf: true
+
 
   - title: Troubleshooting
     jurl: /jekyllhowto-troubleshooting.html
