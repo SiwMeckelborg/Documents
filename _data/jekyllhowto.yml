@@ -14,10 +14,6 @@ folders:
     jurl: /pdf_title_page.html
     pdf: true
 
-  - title: Copyright
-    jurl: /oidc_guide_maskinporten.html
-
-
   - title: TOC page
     jurl: /pdf_toc_page.html
     pdf: true
@@ -44,10 +40,6 @@ folders:
     ref: jekyllhowto-content-and-formatting
     bookmarks: [kramdowntoc, images_section]
     pdf: true
-
-  - title: Generate a PDF
-    jurl: /oidc_guide_maskinporten.html
-    ref: jekyllhowto-pdf
 
 
   - title: Troubleshooting
