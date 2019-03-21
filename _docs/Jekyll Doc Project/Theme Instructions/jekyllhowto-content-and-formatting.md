@@ -12,6 +12,31 @@ This page covers all the details you need to know about content and formatting, 
 
 ## Where to Store Your Pages
 
+"Maskinporten" er en egenskap ved ID-portens OIDC provider som tilbyr en enkel modell for API-sikring basert på såkalt "2-legged Oauth", inspirert av [Google sine system-kontoer](https://developers.google.com/identity/protocols/OAuth2ServiceAccount).
+
+
+
+
+<div class="mermaid">
+graph LR
+  subgraph API-tilbyder
+    API
+  end
+  subgraph Difi
+    OIDC[OIDC Provider]
+  end
+  subgraph API-konsument
+     ny[Klient]
+  end
+  OIDC -->|2.utsteder token|ny
+  ny -->|1. forspør tilgang|OIDC
+  ny -->|3.bruker token mot|API
+</div>
+
+API-tilbydere og konsumenter kan bruke denne funksjonaliteten for å styre tilgang i de tilfellene der informasjonsverdiene APIet tilbyr er regulert av lovhjemmel, og ikke krever samtykke av brukeren.
+
+Bruk av Maskinporten krever at begge aktørene bruker ID-porten sin selvbetjeningsfunksjonalitet.
+
 Store your files the **_docs** folder, inside a project folder that reflects your product's name. Inside your project folder, you can organize your pages in any of subdirectories you want. As long as each page has a permalink property in the front matter, the pages will be moved into the root directory and flattened (that is, pulled out of any subdirectories) when your site builds.
 
 ## Pages and Front matter
