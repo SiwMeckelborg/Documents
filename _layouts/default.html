@@ -42,9 +42,7 @@
 
                     {% include disqus.html %}
 
-                    <link rel="stylesheet" type="text/css" href="/assets/css/mermaid.css">
-                    <script type="text/javascript" src="/assets/js/mermaid.min.js"></script>
-
+    
             </div>
         </div><!--/.container-->
 
@@ -55,5 +53,18 @@
     {% include google_analytics.html %}
 
 </body>
+<script>
+var config = {
+    startOnLoad:true,
+    theme: 'forest',
+    flowchart:{
+            useMaxWidth:false,
+            htmlLabels:true
+        }
+};
+mermaid.initialize(config);
+window.mermaid.init(undefined, document.querySelectorAll('.language-mermaid'));
+</script>
+
 
 </html>
