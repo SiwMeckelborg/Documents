@@ -6,15 +6,15 @@ sitemap: false
 
 <script>
 	window.data = {
-		    {% for doc in site.docs %}
+		    {% for item in site.docs %}
 
-							"{{ doc.url | slugify }}": {
-								"id": "{{ doc.url | slugify }}",
-								"title": "{{ doc.title | xml_escape }}",
-								"url": " {{ doc.url | xml_escape }}",
-								"content": {{ doc.content | strip_html | replace_regex: "[\s/\n]+"," " | strip | jsonify }}
+							"{{ item.url | slugify }}": {
+								"id": "{{ item.url | slugify }}",
+								"title": "{{ item.title | xml_escape }}",
+								"url": " {{ item.url | xml_escape }}",
+								"content": {{ item.content | strip_html | replace_regex: "[\s/\n]+"," " | strip | jsonify }}
 							}
 
-		{%- endfor -%}
+		{% endfor %}
 	};
 </script>

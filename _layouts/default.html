@@ -16,7 +16,7 @@
 		<meta name="msapplication-config" content="/assets/browserconfig.xml" />
 		<meta name="theme-color" content="#407afc">
 
-		{% feed_meta %}
+
 
 		{% assign site_title = site.title | default: site.name %}
 		{% assign title = page.title | append: " | " | append: site_title %}
@@ -29,8 +29,7 @@
 
 		<title>{{ title }}</title>
 
-		{% seo title=false %}
-		{% include analytics.html %}
+
 	</head>
 
 	{% assign body_class = site.body_class %}
