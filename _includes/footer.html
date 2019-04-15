@@ -12,17 +12,14 @@
 </div>
 
 <footer>
+
     <div class="container">
+
         <div class="row">
-            <div class="col-md-5 col-sm-6 footerleft ">
 
 
-              {% assign footer = site.data[page.footer] %}
-                        <div class="logofooter"> {{footer.about_title}}</div>
-                <p class="footer-description">{{footer.about_description}}</p>
-
-            </div>
-            <div class="col-md-2 col-sm-6 paddingtop-bottom">
+            <div class="col-md-4 col-sm-6 paddingtop-bottom">
+                  {% assign footer = site.data[page.footer] %}
                 <h6 class="heading7">{{footer.column1_title}}</h6>
                 <ul class="footer-ul">
                   {% for link in footer.column1_links %}
@@ -31,7 +28,7 @@
                 </ul>
             </div>
 
-            <div class="col-md-2 col-sm-6 paddingtop-bottom">
+            <div class="col-md-4 col-sm-6 paddingtop-bottom">
               <h6 class="heading7">{{footer.column2_title}}</h6>
               <ul class="footer-ul">
                 {% for link in footer.column2_links %}
@@ -40,6 +37,25 @@
               </ul>
             </div>
 
+            <div class="col-md-4 col-sm-6 paddingtop-bottom ">
+
+
+              <div class="logofooter"><img class="navbar-logo" src="{{site.logo}}"/></div>
+              <p class="footer-description">{{footer.about_description}}</p>
+
+              <!--Added social media buttons-->
+                <a class="noExtIcon"href="https://twitter.com/Difi_no" onclick="_gaq.push(['_trackEvent', 'exit', 'footer', 'Twitter']);">
+                  <span class="noExtIcon fa fa-twitter"></span></a>
+
+                <a class="noExtIcon" href="https://www.facebook.com/DirektoratetForForvaltningOgIKT/" onclick="_gaq.push(['_trackEvent', 'exit', 'footer', 'Facebook']);">
+                    <span class="fa fa-facebook"></span></a>
+
+                <a class="noExtIcon" href="https://difi.github.io/felleslosninger/feed.xml" onclick="_gaq.push(['_trackEvent', 'exit', 'footer', 'Rss',]);">   
+                    <span class="fa fa-rss"></span></a> 
+                  
+                </div>
+
+<!--
             <div class="col-md-3 col-sm-6 paddingtop-bottom">
               <h6 class="heading7">{{footer.column3_title}}</h6>
               <ul class="footer-ul">
@@ -48,7 +64,7 @@
                   {% endfor %}
               </ul>
             </div>
-
+-->
 
         </div>
     </div>

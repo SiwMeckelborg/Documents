@@ -1,0 +1,47 @@
+sidebarTitle: eFormidling
+
+folders:
+- title: Teknisk informasjon
+
+  folderitems:
+
+    - title: Hvordan komme i gang
+      subfolderitems:
+        
+      - title: Grensesnitt
+        subfolderitems: 
+
+        - title: Grensesnitt
+          jurl: /eformidling_api.html
+
+     
+
+      - title: NextMove
+        subfolderitems:
+
+#        - title: Arkivmeldingen
+#          jurl: /eformidling_arkivmeldingen.html
+#
+#        - title: Meldingsflyt
+#          jurl: /eformidling_meldingsflyt.html
+#
+#        - title: Forretningsmeldingen
+#          jurl: /eformidling_forretningsmelding.html
+
+
+###########################
+
+related_resources_title: Andre nyttige lenker
+
+related_resources_list:
+
+- title: Github
+  jurl: https://github.com/difi/felleslosninger
+
+- title: Samarbeidsportalen
+  jurl: https://samarbeid.difi.no/felleslosninger
+
+- title: Difi
+  jurl: https://www.difi.no
+
+

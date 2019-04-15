@@ -10,11 +10,11 @@ body.docs .highlight {
   padding: 15px;
   padding-left: 10px;
   background: #202020;
-  color: #C1C2C3;
+  color: #FFFFFF;
 }
 
 
-body.docs .highlight .hll { background-color: #202020 }
+body.docs .highlight .hll { background-color: #FFFFFF }
 body.docs .highlight .c { color: #75715e } /* Comment */
 body.docs .highlight .err { color: #960050; background-color: #1e0010 } /* Error */
 body.docs .highlight .k { color: #66d9ef } /* Keyword */

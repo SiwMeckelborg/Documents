@@ -5,10 +5,11 @@
 <div class="sidebar-inner">
 
 
-  {% if site.search_in_sidebar == true %}
+{% include search.html %}
+  <!-- {% if site.search_in_sidebar == true %} -->
 <!-- search bar - uses Lunr.js  -->
 
-<div class="sidebarSearchBar">
+<!-- <div class="sidebarSearchBar">
 <form action="search.html" method="get">
   <div class="input-group search">
     <input type="text" id="search-box" name="query" class="form-control" placeholder="{{site.uistring.search_placeholder_text}}">
@@ -19,15 +20,15 @@
     </div>
   </div>
 </form>
-</div>
+</div> -->
 
 <!-- end search bar -->
-{% endif %}
+<!-- {% endif %} -->
 
 {% unless page.sidebar == null %}
 <div class="productTitle">{{sidebar.sidebarTitle}}</div>
 <p class="external">
-    <a href="#" id="collapseAll">{{site.uistring.collapseall}}</a> | <a href="#" id="expandAll">{{site.uistring.expandall}}</a>
+    <a href="#" id="collapseAll">{{site.uistring.collapseall}}</a> | <a href="#" id="expandAll">{{site.uistring.expandall}}</a> | <a href="https://difi.github.io/felleslosninger/index.html" id="home_btn">{{site.uistring.home_btn}}</a>
 </p>
 {% endunless %}
 
@@ -35,7 +36,8 @@
     <ul id="docnavsidebar" class="docnav">
     {% for folder in sidebar.folders %}
     {% unless folder.type == "frontmatter" %}
-    <li class="level1"><a href="#">{{ folder.title }}</a>
+    <li class="level1"><a href="{{folder.jurl | remove: "/" }}">{{folder.title}}</a>
+
         <ul>
             {% for folderitem in folder.folderitems %}
 
@@ -100,14 +102,16 @@
     </li>
 </ul>
 
+
 <hr class="resourceSeparator"></hr>
 <div class="relatedResources">{{sidebar.related_resources_title}}</div>
 <ul id="entrypages">
         {% for item in sidebar.related_resources_list %}
         <li><a class="noExtIcon" href="{{item.jurl }}">{{item.title}}</a></li>
         {% endfor %}
-    </li>
+
 </ul>
+
 </div>
 </div>
 <script>$("li.open").parents('li').toggleClass("open");</script>

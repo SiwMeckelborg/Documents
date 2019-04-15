@@ -1,3 +1,5 @@
-## Jekyll Doc Project -- a theme for building documentation websites with Jekyll
+## Teknisk dokumentasjon av Difi's fellesløsninger
 
-This repo contains the Jekyll Doc Project theme, which is used for creating documentation projects with Jekyll. For information on getting started, see \_docs/jekyllhowto/Theme Instructions/jekyllhow-to-getting-started.md. The Theme Instructions folder contains all the documentation needed to work with this theme.
+Dette er kildekoden til den tekniske dokumentasjonen for Difi's fellesløsninger.
+
+Du finner en formattert versjon av denne dokumentasjonen på følgende nettside: https://difi.github.io/felleslosninger/
