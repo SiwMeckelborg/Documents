@@ -6,13 +6,8 @@ sitemap: false
 
 <script>
 	window.data = {
-		{%- for collection in site.collections -%}
-			{%- if collection.output -%}
-				{%- for item in site[collection.label] -%}
-					{%- if item.title -%}
-						{%- unless item.excluded_in_search -%}
-							{%- if added -%},{%- endif -%}
-							{%- assign added = false -%}
+		{%- for doc in site.docs -%}
+
 							"{{ item.url | slugify }}": {
 								"boost": {% if collection.boost %}{{ collection.boost }}{% else %}1{% endif %},
 								"id": "{{ item.url | slugify }}",
@@ -20,11 +15,7 @@ sitemap: false
 								"url": " {{ item.url | xml_escape }}",
 								"content": {{ item.content | strip_html | replace_regex: "[\s/\n]+"," " | strip | jsonify }}
 							}
-							{%- assign added = true -%}
-						{%- endunless -%}
-					{%- endif -%}
-				{%- endfor -%}
-			{%- endif -%}
+
 		{%- endfor -%}
 	};
 </script>
