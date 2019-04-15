@@ -1,61 +1,171 @@
-(function() {
-  function displaySearchResults(results, store) {
-    var searchResults = document.getElementById('search-results');
+(function () {
+	function debounce(func, wait, immediate) {
+		var timeout;
 
-    if (results.length) { // Are there any results?
-      var appendString = '';
+		return function () {
+			var context = this,
+				args = arguments;
 
-      for (var i = 0; i < results.length; i++) {  // Iterate over the results
-        var item = store[results[i].ref];
-        appendString += '<li><a href="' + item.url + '"><h3>' + item.title + '</h3></a>';
-        appendString += '<p>' + item.content.substring(0, 150) + '...</p></li>';
-      }
+			clearTimeout(timeout);
 
-      searchResults.innerHTML = appendString;
-    } else {
-      searchResults.innerHTML = '<li>No results found</li>';
-    }
-  }
+			timeout = setTimeout(function () {
+				timeout = null;
+				if (!immediate) {
+					func.apply(context, args);
+				}
+			}, wait);
 
-  function getQueryVariable(variable) {
-    var query = window.location.search.substring(1);
-    var vars = query.split('&');
+			if (immediate && !timeout) {
+				func.apply(context, args);
+			}
+		};
+	}
 
-    for (var i = 0; i < vars.length; i++) {
-      var pair = vars[i].split('=');
+	function escapeHtml(html) {
+		var text = document.createTextNode(html);
+		var p = document.createElement("p");
+		p.appendChild(text);
+		return p.innerHTML;
+	}
 
-      if (pair[0] === variable) {
-        return decodeURIComponent(pair[1].replace(/\+/g, '%20'));
-      }
-    }
-  }
+	function getQueryVariable(variable) {
+		var query = window.location.search.substring(1),
+			vars = query.split("&");
 
-  var searchTerm = getQueryVariable('query');
+		for (var i = 0; i < vars.length; i++) {
+			var pair = vars[i].split("=");
 
-  if (searchTerm) {
-    document.getElementById('search-box').setAttribute("value", searchTerm);
+			if (pair[0] === variable) {
+				return pair[1];
+			}
+		}
+	}
 
-    // Initalize lunr with the fields it will be searching on. I've given title
-    // a boost of 10 to indicate matches on this field are more important.
-    var idx = lunr(function () {
-      this.field('id');
-      this.field('title', { boost: 10 });
-      this.field('author');
-      this.field('category');
-      this.field('content');
-    });
+	function getPreview(query, content, previewLength) {
+		previewLength = previewLength || (content.length * 2);
 
-    for (var key in window.store) { // Add the data to lunr
-      idx.add({
-        'id': key,
-        'title': window.store[key].title,
-        'author': window.store[key].author,
-        'category': window.store[key].category,
-        'content': window.store[key].content
-      });
+		var parts = query.split(" "),
+			loweredContent = content.toLowerCase(),
+			match = content.toLowerCase().indexOf(query.toLowerCase()),
+			matchLength = query.length,
+			preview;
 
-      var results = idx.search(searchTerm); // Get lunr to perform a search
-      displaySearchResults(results, window.store); // We'll write this in the next section
-    }
-  }
+		// Find a relevant location in content
+		for (var i = 0; i < parts.length; i++) {
+			if (match >= 0) {
+				break;
+			}
+
+			match = loweredContent.indexOf(parts[i].toLowerCase());
+			matchLength = parts[i].length;
+		}
+
+		// Create preview
+		if (match >= 0) {
+			var start = match - (previewLength / 2),
+				end = start > 0 ? match + matchLength + (previewLength / 2) : previewLength;
+
+			preview = content.substring(start, end).trim();
+
+			if (start > 0) {
+				preview = "..." + preview;
+			}
+
+			if (end < content.length) {
+				preview = preview + "...";
+			}
+
+			// Highlight query parts
+			preview = preview.replace(new RegExp("(" + parts.join("|") + ")", "gi"), "<strong>$1</strong>");
+		} else {
+			// Use start of content if no match found
+			preview = content.substring(0, previewLength).trim() + (content.length > previewLength ? "..." : "");
+		}
+
+		return preview;
+	}
+
+	function displaySearchResults(results, query) {
+		var searchResultsEl = document.getElementById("search-results"),
+			searchResultsStatusEl = document.getElementById("search-results-status"),
+			searchProcessEl = document.getElementById("search-process");
+
+		if (results.length) {
+			var resultsHTML = "";
+			results.forEach(function (result) {
+				var item = window.data[result.ref],
+					contentPreview = getPreview(query, item.content, 170),
+					urlPreview = getPreview(query, item.url),
+					titlePreview = getPreview(query, item.title);
+
+				resultsHTML +=
+					"<li>" +
+						"<h4 class='search-result-title'><a href='" + item.url.trim() + "?h=" + encodeURIComponent(query).replace(/'/g, "%27") + "'>" + titlePreview + "</a></h4>" +
+						"<p class='search-result-url'>" + urlPreview + "</p>" +
+						"<p class='search-result-snippet'>" + contentPreview + "</p>" +
+					"</li>";
+			});
+
+			searchResultsStatusEl.innerHTML = results.length + " result" + (results.length === 1 ? "" : "s") + " for <strong>" + escapeHtml(query) + "</strong>";
+			searchResultsEl.innerHTML = resultsHTML;
+		} else {
+			searchResultsStatusEl.innerHTML = "No results" + (query ? " for <strong>" + escapeHtml(query) + "</strong>" : "");
+			searchResultsEl.innerHTML = "";
+		}
+	}
+
+	function runSearch(query) {
+		if (!query) {
+			return displaySearchResults([], query);
+		}
+
+		var searchResultsStatusEl = document.getElementById("search-results-status");
+		searchResultsStatusEl.innerHTML = "Loading results for <strong>" + escapeHtml(query) + "</strong>...";
+
+		var sanitised = query.replace(/(^ +| +$|\*)/g, "").replace(/ +/g, " ");
+		if (!sanitised) {
+			return displaySearchResults([], sanitised);
+		}
+
+		var parts = sanitised.split(" "),
+			wildcardQueries = [];
+
+		for (var i = 0; i < parts.length; i++) {
+			wildcardQueries.push(parts[i] + " " + parts[i] + "*");
+		}
+
+		displaySearchResults(window.index.search(wildcardQueries.join(" ")), sanitised);
+	}
+
+	window.index = lunr(function () {
+		this.field("id");
+		this.field("title", {boost: 2});
+		this.field("url");
+		this.field("content");
+
+		for (var key in window.data) {
+			this.add(window.data[key], {
+				boost: window.data[key].boost || 1
+			});
+		}
+	});
+
+	var query = decodeURIComponent((getQueryVariable("q") || "").replace(/\+/g, "%20")),
+		searchInputEls = document.getElementsByClassName("search-input");
+
+	for (var i = 0; i < searchInputEls.length; i++) {
+		searchInputEls[i].value = query;
+	}
+
+	if (searchInputEls.length) {
+		searchInputEls[searchInputEls.length - 1].focus();
+		searchInputEls[searchInputEls.length - 1].select();
+	}
+
+	runSearch(query);
+
+	var contentSearchInputEl = document.getElementById("content-search-input");
+	contentSearchInputEl.addEventListener("input", debounce(function () {
+		runSearch(contentSearchInputEl.value);
+	}, 300));
 })();
