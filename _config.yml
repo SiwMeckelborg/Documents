@@ -3,9 +3,9 @@
 
 title: Test documentation
 description: Test description
-url: https://siwmeckelborg.github.io/Documents/
+url: https://siwmeckelborg.github.io/Documents
 # disqus_shortname: cloudcannon
-baseurl: https://siwmeckelborg.github.io/Documents/
+baseurl: https://siwmeckelborg.github.io/Documents
 
 active_sibling:
 main_url:
